@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="table-container">
+    <table class="highlight responsive-table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Temperatura</th>
+          <th>Humedad</th>
+          <th>Calidad del Aire</th>
+          <th>Amoníaco (NH3)</th>
+          <th>Dioxido de Carbono (CO2)</th>
+          <th>Humo (ppm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dato of datos">
+          <td>{{ dato.fecha | date: 'short' }}</td>
+          <td>{{ dato.temperatura }} °C</td>
+          <td>{{ dato.humedad }} %</td>
+          <td>{{ esTemperaturaAdecuada(dato.temperatura) ? 'Adecuada' : 'No Adecuada' }}</td>
+          <td>{{ dato.amoniaco }} ppm</td>
+          <td>{{ dato.monoxidoCarbono }} ppm</td>
+          <td>{{ dato.humo }} ppm</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <button class="btn waves-effect waves-light export-button title" (click)="exportarExcel()">
+        Exportar a Excel
+      </button>
+      <button class="btn waves-effect waves-light export-button di title" (click)="exportarPDF()">
+        Exportar a PDF
+      </button>
+    </div>
+  </div>
+</div>

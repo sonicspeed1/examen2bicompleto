@@ -1,0 +1,47 @@
+<div class="container">
+  <h2 class="center-align">Registro de usuarios</h2>
+    <div *ngIf="registerError" class="card-panel red lighten-4">{{ registerError }}</div>
+    <div *ngIf="registerSuccess" class="card-panel teal lighten-4">{{ registerSuccess }}</div>
+  <form [formGroup]="registerForm" (ngSubmit)="register()" class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="name" type="text" class="validate" formControlName="name">
+        <label for="name" class="active title">Nombre</label>
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="red-text text-darken-4">
+          Nombre es obligatorio.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="email" class="validate" formControlName="email">
+        <label for="email" class="active title" >Correo Electrónico (ups.edu.ec)</label>
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="red-text text-darken-4">
+          Correo electrónico no válido. Debe ser una cuenta de ups.edu.ec.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="password" type="password" class="validate" formControlName="password">
+        <label for="password" class="active title">Contraseña (mín. 6 caracteres entre letras y números)</label>
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="red-text text-darken-4">
+          Contraseña inválida. Debe tener al menos 6 caracteres entre letras y números.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <select id="tipo" class="browser-default" formControlName="tipo">
+          <option value="operador">Operador</option>
+          <option value="administrador">Administrador</option>
+        </select>
+        <label for="tipo" class="active title">Tipo de Usuario</label>
+      </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn waves-effect waves-light title">Registrar Usuario</button>
+      <button type="reset" class="btn red waves-effect waves-light mt-2 title">limpiar</button> 
+    </div>
+  </form>
+</div>

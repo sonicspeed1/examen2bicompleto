@@ -1,0 +1,23 @@
+<nav class="nav">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo"> <i class="material-icons">local_florist</i> </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <ng-container *ngIf="(isAuthenticated$ | async) === false">
+        <li><a routerLink="/home" routerLinkActive="activo">Home</a></li>
+        <li><a routerLink="/login" routerLinkActive="activo">Login</a></li>
+      </ng-container>
+      <ng-container *ngIf="(isAuthenticated$ | async) === true">
+        <ng-container *ngIf="(userType$ | async) === 'administrador'">
+          <li><a routerLink="/crear-usuarios" routerLinkActive="activo">Crear Usuarios</a></li>
+          <li><a routerLink="/consultar-usuarios" routerLinkActive="activo">Consultar Usuarios</a></li>
+        </ng-container>
+        <ng-container *ngIf="(userType$ | async) === 'operador'">
+          <li><a routerLink="/dashboard" routerLinkActive="activo">Dashboard</a></li>
+          <li><a routerLink="/generar-reporte" routerLinkActive="activo">Generar Reporte</a></li>
+        </ng-container>
+        <li><a routerLink="/actualizar-contrasenia" routerLinkActive="activo">Actualizar Contraseña</a></li>
+        <li><a (click)="logout()">Cerrar Sesión</a></li>
+      </ng-container>
+    </ul>
+  </div>
+</nav>

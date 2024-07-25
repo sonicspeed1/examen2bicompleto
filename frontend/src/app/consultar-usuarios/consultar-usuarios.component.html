@@ -1,0 +1,51 @@
+<div class="container">
+  <h2 class="center-align">Consultar Usuarios</h2>
+  <div class="card">
+    <div class="card-content">
+      <table class="highlight centered">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Tipo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuarios">
+            <td *ngIf="!editingUser || editingUser._id !== usuario._id">
+              {{ usuario.name }}
+            </td>
+            <td *ngIf="!editingUser || editingUser._id !== usuario._id">
+              {{ usuario.email }}
+            </td>
+            <td *ngIf="!editingUser || editingUser._id !== usuario._id">
+              {{ usuario.tipo }}
+            </td>
+            <td *ngIf="editingUser && editingUser._id === usuario._id">
+              <input [(ngModel)]="editingUser.name" placeholder="Nombre">
+            </td>
+            <td *ngIf="editingUser && editingUser._id === usuario._id">
+              <input [(ngModel)]="editingUser.email" placeholder="Email">
+            </td>
+            <td *ngIf="editingUser && editingUser._id === usuario._id">
+              <select [(ngModel)]="editingUser.tipo" class="browser-default">
+                <option value="operador" [selected]="editingUser.tipo === 'operador'">Operador</option>
+                <option value="administrador" [selected]="editingUser.tipo === 'administrador'">Administrador</option>
+              </select>
+            </td>
+            <td *ngIf="editingUser && editingUser._id === usuario._id">
+              <input [(ngModel)]="newPassword" type="password" placeholder="Nueva Contraseña">
+              <button class="waves-effect waves-light btn green" (click)="guardarcambios(usuario._id || '')">Guardar</button>
+              <button class="waves-effect waves-light btn red" (click)="cancelarEdit()">Cancelar</button>
+            </td>
+            <td *ngIf="!editingUser || editingUser._id !== usuario._id">
+              <a class="waves-effect waves-light btn blue title" (click)="editarUser(usuario)">Actualizar</a>
+              <a class="waves-effect waves-light btn red title" (click)="eliminarUsuario(usuario._id)">Eliminar Usuario</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

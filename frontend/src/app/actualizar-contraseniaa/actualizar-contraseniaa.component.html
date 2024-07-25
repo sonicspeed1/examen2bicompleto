@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Cambiar Contraseña</h2>
+  <div *ngIf="errorMessage" class="card-panel red lighten-4">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="card-panel teal lighten-4">{{ successMessage }}</div>
+  <form [formGroup]="passwordForm" (ngSubmit)="cambiarContrasenia()">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="oldPassword" type="password" class="validate" formControlName="oldPassword">
+        <label for="oldPassword" class="title">Contraseña Antigua</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="newPassword" type="password" class="validate" formControlName="newPassword">
+        <label for="newPassword" class="title">Nueva Contraseña</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="verifypass" type="password" class="validate" formControlName="verifypass">
+        <label for="verifypass" class="title">Verificar la Contraseña</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light title" type="submit">Cambiar Contraseña</button>
+    <button class="btn red waves-effect waves-light di title" type="reset">Limpiar</button>
+  </form>
+</div>
